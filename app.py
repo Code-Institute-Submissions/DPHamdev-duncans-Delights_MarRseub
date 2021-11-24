@@ -22,10 +22,12 @@ mongo = PyMongo(app)
 def home():
     return render_template("base.html")
 
+
 @app.route("/recipes")
 def recipes():
-    rec = list(mongo.db.recipes.find())
-    return render_template("recipes.html", rec=recipes)
+    categories = list(mongo.db.recipeCategory.find())
+    return render_template("recipes.html", recCat=categories)
+
 
 @app.route("/add_recipe")
 def add_recipe():
