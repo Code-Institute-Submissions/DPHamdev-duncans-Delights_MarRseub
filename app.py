@@ -25,13 +25,29 @@ def home():
 
 @app.route("/recipes")
 def recipes():
-    categories = list(mongo.db.recipeCategory.find())
-    return render_template("recipes.html", recCat=categories)
+    return render_template("recipes.html")
 
 
 @app.route("/add_recipe")
 def add_recipe():
     return render_template("addrecipe.html")
+
+@app.route("/starters")
+def starters():
+    recipe = list(mongo.db.recipes.find())
+    return render_template("starters.html", recipes=recipe)
+
+
+@app.route("/mCourse")
+def mCourse():
+    recipe = list(mongo.db.recipes.find())
+    return render_template("maincourses.html", recipes=recipe)
+
+
+@app.route("/dessert")
+def dessert():
+    recipe = list(mongo.db.recipes.find())
+    return render_template("desserts.html", recipes=recipe)
 
 
 if __name__ == "__main__":

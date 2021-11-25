@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 
-            
-      <ul class="collapsible">
-        {% for category in recCat %}
-        <li>
-          <div class="collapsible-header"><i class="material-icons"></i>{{ category.course_category }}</div>
-          <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        {% endfor %}
-      </ul>
+      <h1 class="center-align">List of Recipes</h1>
+
+      <div class="row">
+          <a href="{{ url_for('starters') }}" class="col s12 l4 btn-large">
+            Starters
+          </a>
+          <a href="{{ url_for('mCourse') }}" class="col s12 l4 btn-large">
+            Main Courses
+          </a>
+          <a href="{{ url_for('dessert') }}" class="col s12 l4 btn-large">
+            Desserts
+          </a>
+
+          
+
+
+      </div>
         
 
 

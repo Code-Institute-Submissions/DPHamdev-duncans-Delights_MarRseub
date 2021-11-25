@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+            
+      <ul class="collapsible">
+        {% for recipe in recipes %}
+           {% if recipe.course_category == "Starter" %}   
+              <li>
+                <div class="collapsible-header">
+                    <i class="material-icons"></i>
+                    <strong>{{ recipe.recipe_name }}</strong>
+                </div>
+                <div class="collapsible-body">
+                    <p><strong>Preparation Time</strong> : {{ recipe.prep_time }}</p>
+                    <ul>
+                      <li>
+                          <p>{{ recipe.ingredients }}</p>
+                      </li>
+                    </ul>
+                </div>
+              </li>
+            {% endif %}
+        {% endfor %}
+      </ul>
+
+      <div class="row">
+        <a href="{{ url_for('recipes') }}" class="col s12 btn-large">
+          Back to recipes
+        </a>
+      </div>
+        
+
+{% endblock %}
