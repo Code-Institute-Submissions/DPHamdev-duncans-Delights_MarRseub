@@ -4,35 +4,91 @@
     <h1 class="center-align">Add Recipe</h1>
 
     <div class="row">
-                <h2>Select a file to upload</h2>
-        <p>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-            {% endwith %}
-        </p>
-        {% if filename %}
-            <div>
-                <img src="{{ url_for('display_image', filename=filename) }}">
-            </div>
-        {% endif %}
-        <form method="post" action="/" enctype="multipart/form-data">
-            <dl>
-                <p>
-                    <input type="file" name="file" autocomplete="off" required>
-                </p>
-            </dl>
-            <p>
-                <input type="submit" value="Submit">
-            </p>
-        </form>
+        <!-- Add recipe form -->
 
-    </div>
+        <div class="row card-panel grey lighten-5">
+            <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
+                <!-- category selection -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+                        <select id="course_category" name="course_category" class="validate" required>
+                            <option value="" disabled selected>Choose Category</option>
+                            {% for category in categories %}
+                                <option value="{{ category.course_category }}">{{ category.course_category }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="recipe_category">Recipe Category</label>
+                    </div>
+                </div>
+                <!-- task name -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
+                        <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
+                            type="text" class="validate" required>
+                        <label for="recipe_name">Recipe Name</label>
+                    </div>
+                </div>
+                <!-- recipe ingredients -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-align-left prefix light-blue-text text-darken-4"></i>
+                        <textarea id="recipe_ingredients" name="recipe_ingredients" minlength="5"
+                            maxlength="200" class="materialize-textarea validate" required></textarea>
+                        <label for="recipe_ingredients">Recipe Ingredients</label>
+                    </div>
+                        <!--  Upload Image  -->
+                <div class="row"> 
+                    <div class="col s6"> 
+                            <h3 class="center-align">Select an image to upload</h3>
+                            <p>
+                                {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <ul>
+                                    {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                {% endwith %}
+                            </p>
+                                
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        <div class="image-preview center-align" id="imagePreview">
+                            <img src="" alt="Image Preview" class="image-preview__image ">
+                            <span class="imagepreview__default-text">Image Preview</span>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <form method="post" action="/" enctype="multipart/form-data">
+                            <dl>
+                                <p>
+                                    <input type="file" name="file" id="file" autocomplete="off" required>
+                                </p>
+                            </dl>
+                            <p>
+                                <input type="submit" value="Submit">
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+                </div>
+                </div>
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+                            Add Recipe <i class="fas fa-plus-square right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
 {% endblock %}
 
