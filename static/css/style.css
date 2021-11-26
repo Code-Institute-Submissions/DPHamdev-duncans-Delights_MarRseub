@@ -14,7 +14,54 @@
     color: #cccccc;
 }
 
+.recipeForm {
+    display: block !important;
+}
+
 .image-preview__image {
     display: none;
     width: 100%;
 }
+
+.form-wrapper {
+    padding: 10px;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .red{
+    color: red;
+  }
+  
+  .form-col {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    max-width: 1120;
+    padding-left: 10px;
+  }
+  
+  .form__item {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+  }
+
+  .form__item input, textarea {
+    border: 0.5px solid black !important;
+  }
+  
+  label {
+    font-size: small;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+  }
+  .time__input {
+    max-width: 100px;
+    margin-right: 25px;
+  }
+  

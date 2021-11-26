@@ -55,7 +55,7 @@ def add_recipe():
         mongo.db.recipes.insert_one(recipe)
 
         flash("Recipe Successfully Added")
-        return redirect( url_for("recipes") )
+        return redirect(url_for("recipes"))
 
     categories = mongo.db.recipeCategory.find().sort("course_category", 1)
     return render_template("addrecipe.html", categories=categories)
