@@ -33,7 +33,8 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        # check to see if username exists on db
+        # check to see if username exists on 
+        
         user_exist = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         
