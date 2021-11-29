@@ -23,7 +23,7 @@
               <ul class="right left hide-on-med-and-down">
                 <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
                 <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
-                <li><a href="#">Log In</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
               </ul>
             </div>
           </nav>
@@ -33,6 +33,7 @@
           <ul id="mobile-demo" class="sidenav">
             <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
             <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
           </ul>
     </header>
 
