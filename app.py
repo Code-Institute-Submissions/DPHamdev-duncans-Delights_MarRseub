@@ -4,7 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash,check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 # Upload import
 from werkzeug.utils import secure_filename
 if os.path.exists("env.py"):
@@ -41,10 +41,11 @@ def register():
         if user_exist:
             flash(
                 "That name already exists, think of another cool name!")
-            return render_template(url_form("register"))
+            return redirect(url_for("register"))
 
         register = {
             "username": request.form.get("username").lower(),
+            "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
 

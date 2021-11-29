@@ -4,7 +4,7 @@
         <h3 class="center-align">Register</h3>
 
         <div class="row">
-            <form class="col s12 m8 offset-m2" method="POST", action="{{ url_for('register') }}">
+            <form id="register-form" class="col s12 m8 offset-m2" onsubmit="return sendForm(this);" method="POST", action="{{ url_for('register') }}">
                 <div class="card">
                     <div class="card-image">
                         <img src="images/sample-1.jpg">
