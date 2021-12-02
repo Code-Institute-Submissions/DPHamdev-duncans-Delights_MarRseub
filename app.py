@@ -55,7 +55,47 @@ def register():
 
         session["user"] = request.form.get("username").lower()
         flash("Registration sucessful")
+        return redirect(url_for("profile", username=session["username"]))
+
     return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # checking username exists
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        
+        if existing_user:
+            # make sure password matches
+            if check_password_hash(
+                existing_user["password"], request.form.get("password")):
+                    session["user"] = request.form.get("username").lower()
+                    flash("Welcome to Duncan's Delights {}".format(
+                        request.form.get("username")))
+                    return redirect(url_for(
+                        "profile", username=session["username"]))
+
+            else:
+                # incorrect password match
+                flash("Sorry, your Username and/or Password don't match.")
+                return redirect(url_for("login"))
+
+        else:
+            # username doesn't exist function
+            flash("Sorry, your Username and/or Password don't match")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # using the user session's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    return render_template("profile.html", username=username)
 
 
 @app.route("/recipes")
@@ -69,7 +109,8 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit(
+        '.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])

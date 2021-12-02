@@ -1,35 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
-        <h3 class="center-align">Register</h3>
+        <h3 class="center-align">Login</h3>
 
         <div class="row">
-            <form class="col s12 m8 offset-m2" onsubmit="return sendForm(this);" method="POST", action="{{ url_for('register') }}">
+            <form class="col s12 m8 offset-m2" method="POST", action="{{ url_for('login') }}">
                 <div class="card">
-                    <div class="card-image">
-                        <img src="images/sample-1.jpg">
-                        <span class="card-title">Card Title</span>
-                    </div>
                     <div class="card-content">
                         <div class="row">
                             <!-- username -->
                                 <div class="input-field col s12">
-                                  <i class="fas fa-user-plus prefix"></i>
+                                  <i class="fas fa-user-cog prefix"></i>
                                   <input id="username" name="username" type="text" 
                                         minlength="5" maxlength="15" 
                                         pattern="^[a-z,A-Z,0-9]{5,15}$" class="validate" required>
                                   <label for="username">Username</label>
                                 </div>
                           </div>
-                            <!-- email -->
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="fas fa-at prefix"></i>
-                                <input id="email" name="email" type="email" 
-                                    class="validate" required>
-                                <label for="email">Email</label>
-                            </div>
-                        </div>
                           <!-- password -->
                         <div class="row">
                             <div class="input-field col s12">
@@ -43,23 +30,21 @@
                         <!-- submit -->
                         <div class="row">
                             <button type="submit" class="col s12 btn-large light-blue darken-4">
-                                Register <i class="fas fa-sign-in-alt"></i>
+                                Log in <i class="fas fa-sign-in-alt"></i>
                             </button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-
+        
         <div class="row">
             <div class="col s12">
                 <p class="center-align"> 
-                Already Registered?                    
-                <a href="{{ url_for('login') }}">Log in</a>
+                    Not registered? 
+                    <a href="{{ url_for('register') }}">Register</a>
                 </p>
             </div>
         </div>
-
-                    
 
 {% endblock %}

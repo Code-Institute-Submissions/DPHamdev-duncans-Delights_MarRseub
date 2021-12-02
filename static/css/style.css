@@ -1,3 +1,10 @@
+.flashes {
+  line-height: 2px;
+  display: block !important;
+}
+
+
+
 .image-preview {
     width: 300px;
     min-height: 100px;
