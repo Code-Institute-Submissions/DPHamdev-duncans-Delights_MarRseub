@@ -76,7 +76,6 @@ def login():
                         request.form.get("username")))
                     return redirect(url_for(
                         "profile", username=session["user"]))
-
             else:
                 # incorrect password match
                 flash("Sorry, your Username and/or Password don't match.")
@@ -151,9 +150,35 @@ def add_recipe():
 
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    categories = mongo.db.recipeCategory.find().sort("course_category", 1)
-    return render_template("editrecipe.html", recipe=recipe, categories=categories)
+        if request.method == "POST":
+            submit = {
+                "course_category": request.form.get("course_category"),
+                "recipe_name": request.form.get("recipe_name"),
+                "prep_time": request.form.get("prep_time"),
+                "cooking_time": request.form.get("cooking_time"),
+                "serves": request.form.get("serves"),
+                "s_desc": request.form.get("s_desc"),
+                "ingredients": request.form.get("ingredients").splitlines(),
+                "directions": request.form.get("directions"),
+                "cook_tip": request.form.get("cook_tip"),
+                "created_by": session["user"]
+            }
+            mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
+
+            flash("Recipe Successfully Edited")
+
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]   
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        categories = mongo.db.recipeCategory.find().sort("course_category", 1)
+        return render_template("editrecipe.html", recipe=recipe, username=username, categories=categories)
+
+
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(task_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash("Recipe Successfully Deleted")
+    return redirect(url_for("profile"))
 
 
 @app.route("/starters")
