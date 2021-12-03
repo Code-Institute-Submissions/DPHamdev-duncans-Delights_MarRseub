@@ -1,9 +1,12 @@
+
+/* flash message styling */
+
 .flashes {
   line-height: 2px;
   display: block !important;
 }
 
-
+/* image preview */
 
 .image-preview {
     width: 300px;
@@ -21,40 +24,19 @@
     color: #cccccc;
 }
 
-.recipeForm {
-    display: block !important;
+.image-preview__image {
+  display: none;
+  width: 100%;
 }
 
-.image-preview__image {
-    display: none;
-    width: 100%;
+/* form styling */
+
+.recipeForm {
+  display: block !important;
 }
 
 .form-wrapper {
     padding: 10px;
-  }
-  
-  .row {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .red{
-    color: red;
-  }
-  
-  .form-col {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    max-width: 1120;
-    padding-left: 10px;
-  }
-  
-  .form__item {
-    display: flex;
-    flex-direction: column;
-    padding-top: 15px;
   }
   
   label {
@@ -70,4 +52,45 @@
     padding: 10px;
     background-color: #CCC;
   }
-  
+
+/* recipe button images */
+
+.starter-btn {
+  background: url(/static/images/starter.jpg) no-repeat center;
+  background-size: cover;
+  height: 300px;
+  line-height: 300px;
+  border: 1px solid black;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.mcourse-btn {
+  background: url(/static/images/pizza.jpg) no-repeat center;
+  background-size: cover;
+  height: 300px;
+  line-height: 300px;
+  border: 1px solid black;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.dessert-btn {
+  background: url(/static/images/dessert.jpg) no-repeat center;
+  background-size: cover;
+  height: 300px;
+  line-height: 300px;
+  border: 1px solid black;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+/* button text */
+
+.rec-btn-text {
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 75px;
+  color: black;
+  border: 2px white solid;
+  border-radius: 5px;
+}
