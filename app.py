@@ -185,9 +185,46 @@ def delete_recipe(recipe_id):
 # categories
 @app.route("/manage_categories")
 def manage_categories():
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    if username != "admin":
+        redirect(url_for('profile', username=username))
+
     categories = list(mongo.db.recipeCategory.find().sort(
         "course_category", 1))
     return render_template("recipecategory.html", categories=categories)
+
+
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    if username != "admin":
+        redirect(url_for('profile', username=username))
+
+    if request.method == "POST":
+        category ={
+            "course_category": request.form.get("course_category")
+        }
+        mongo.db.recipeCategory.insert_one(category)
+        flash("New Category Added")
+        return redirect(url_for("manage_categories"))
+
+    return render_template("addcategory.html")
+
+
+@app.route("/edit_category/<category_id>", methods=["GET", "POST"])
+def edit_category(category_id):
+    if request.method == "POST":
+        submit ={
+            "course_category": request.form.get("course_category")
+        }
+        mongo.db.recipeCategory.update({"_id": ObjectId(category_id)}, submit)
+        flash("Category Edited Successfully")
+        return redirect(url_for("manage_categories"))
+
+    category = mongo.db.recipeCategory.find_one({"_id": ObjectId(category_id)})
+    return render_template("editcategory.html", category=category)
 
 
 # starter page
