@@ -24,12 +24,14 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 mongo = PyMongo(app)
 
 
+# root
 @app.route("/")
 @app.route("/home")
 def home():
     return render_template("home.html")
 
 
+# register function
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -61,6 +63,7 @@ def register():
     return render_template("register.html")
 
 
+# login function
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -89,6 +92,7 @@ def login():
     return render_template("login.html")
 
 
+# logout function
 @app.route("/logout")
 def logout():
     # log out functionality
@@ -96,6 +100,8 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
+
+# profile function
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # using the user session's username from db
@@ -108,21 +114,13 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+# recipe page
 @app.route("/recipes")
 def recipes():
     return render_template("recipes.html")
 
 
-# Image Upload
-
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit(
-        '.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
+# add recipe
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
@@ -148,6 +146,7 @@ def add_recipe():
     return render_template("addrecipe.html", categories=categories)
 
 
+# edit recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
         if request.method == "POST":
@@ -174,6 +173,7 @@ def edit_recipe(recipe_id):
         return render_template("editrecipe.html", recipe=recipe, username=username, categories=categories)
 
 
+# delete recipe
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(task_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
@@ -181,23 +181,35 @@ def delete_recipe(task_id):
     return redirect(url_for("profile"))
 
 
+# starter page
 @app.route("/starters")
 def starters():
     recipe = list(mongo.db.recipes.find())
     return render_template("starters.html", recipes=recipe)
 
 
+# main course page
 @app.route("/mCourse")
 def mCourse():
     recipe = list(mongo.db.recipes.find())
     return render_template("maincourses.html", recipes=recipe)
 
 
+# dessert page
 @app.route("/dessert")
 def dessert():
     recipe = list(mongo.db.recipes.find())
     return render_template("desserts.html", recipes=recipe)
 
+
+# Image Upload
+
+# ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
+
+# def allowed_file(filename):
+#     return '.' in filename and filename.rsplit(
+#         '.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # @app.route('/', methods=['POST'])
 # def upload_image():
