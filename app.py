@@ -66,8 +66,7 @@ def login():
     if request.method == "POST":
         # checking username exists
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
-        
+            {"username": request.form.get("username").lower()})   
         if existing_user:
             # make sure password matches
             if check_password_hash(
@@ -102,8 +101,7 @@ def logout():
 def profile(username):
     # using the user session's username from db
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-        
+        {"username": session["user"]})["username"]     
     if session["user"]:
         return render_template("profile.html", username=username)
 
@@ -128,6 +126,7 @@ def allowed_file(filename):
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
+
         recipe = {
             "course_category": request.form.get("course_category"),
             "recipe_name": request.form.get("recipe_name"),
@@ -135,10 +134,10 @@ def add_recipe():
             "cooking_time": request.form.get("cooking_time"),
             "serves": request.form.get("serves"),
             "s_desc": request.form.get("s_desc"),
-            "ingredients": request.form.get("ingredients"),
+            "ingredients": request.form.get("ingredients").splitlines(),
             "directions": request.form.get("directions"),
             "cook_tip": request.form.get("cook_tip"),
-            # "created_by": session["user"]
+            "created_by": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
 
