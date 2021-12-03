@@ -133,7 +133,7 @@ def add_recipe():
             "recipe_name": request.form.get("recipe_name"),
             "prep_time": request.form.get("prep_time"),
             "cooking_time": request.form.get("cooking_time"),
-            "servings": request.form.get("servings"),
+            "serves": request.form.get("serves"),
             "s_desc": request.form.get("s_desc"),
             "ingredients": request.form.get("ingredients"),
             "directions": request.form.get("directions"),

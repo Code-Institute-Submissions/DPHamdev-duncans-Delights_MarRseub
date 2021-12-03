@@ -56,10 +56,6 @@
     flex-direction: column;
     padding-top: 15px;
   }
-
-  .form__item input, textarea {
-    border: 0.5px solid black !important;
-  }
   
   label {
     font-size: small;
@@ -67,8 +63,11 @@
     text-transform: capitalize;
     margin-bottom: 5px;
   }
-  .time__input {
-    max-width: 100px;
-    margin-right: 25px;
+
+  .file-input-container {
+    display: flex;
+    width: 160px;
+    padding: 10px;
+    background-color: #CCC;
   }
   

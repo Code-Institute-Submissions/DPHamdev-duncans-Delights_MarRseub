@@ -5,127 +5,105 @@
 
     <div class="row recipeForm">
         <!-- Add recipe form -->
-
-        <div class="row card-panel grey lighten-5">
-            <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
-                <!-- category selection -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
-                        <select id="course_category" name="course_category" class="validate" required>
-                            <option value="" disabled selected>Choose Category</option>
-                            {% for category in categories %}
-                                <option value="{{ category.course_category }}">{{ category.course_category }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="recipe_category">Recipe Category</label>
-                    </div>
-                </div>
-                <!-- task name
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="fas fa-pencil-alt prefix light-blue-text text-darken-4"></i>
-                        <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
-                            type="text" class="validate" required>
-                        <label for="recipe_name">Recipe Name</label>
-                    </div>
-                </div> -->
-                <!-- recipe ingredients -->
-                <!-- <div class="row">
-                    <div class="input-field col s12">
-                            Dropdown Trigger
-                            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
-
-                            Dropdown Structure
-                            <ul id='dropdown1' class='dropdown-content'>
-                            <li><a href="#!">one</a></li>
-                            <li><a href="#!">two</a></li>
-                            <li class="divider" tabindex="-1"></li>
-                            <li><a href="#!">three</a></li>
-                            <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                            <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                    <div class="form-wrapper row card-panel grey lighten-5">
+                        <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
+                            <ul>
+                                <!-- category selection -->
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+                                        <select id="course_category" name="course_category" class="validate" required>
+                                            <option value="" disabled selected>Choose Category</option>
+                                            {% for category in categories %}
+                                                <option value="{{ category.course_category }}">{{ category.course_category }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <label for="course_category">Recipe Category</label>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="input-field col s6">
+                                        <label for="recipe-name">Recipe Name</label>
+                                        <input id="recipe-name" name="recipe-name" type="text" class="validate"/>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <label for="prep_time">Prep Time</label>
+                                        <input placeholder="e.g. 40" id="prep_time" name="prep_time" type="number" class="validate"/>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <p class="valign-wrapper">Minutes</p>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="input-field col s3">
+                                        <label for="cooking_time">Cooking Time</label>
+                                        <input placeholder="e.g. 120" id="cooking_time" name="cooking_time" type="number" class="validate"/>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <p class="valign-wrapper">Minutes</p>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <label for="serves">Serves</label>
+                                        <input placeholder="e.g. 3" name="serves" id="serves" type="number" class="validate"/>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <p class="valign-wrapper">People</p>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <label for="s_desc">Short Description</label>
+                                        <textarea name="s_desc" id="s_desc" cols="30" rows="5" class="materialize-textarea validate"></textarea>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <label for="ingredients">Ingredients</label>
+                                        <textarea name="ingredients" id="ingredients" cols="30" rows="10" class="materialize-textarea validate"></textarea>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <label for="directions">Directions</label>
+                                        <textarea name="direction" id="directions" rows="10" class="materialize-textarea validate"></textarea>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <label for="cook_tip">Cooking Tips</label>
+                                        <textarea name="cook_tip" id="cook_tip" rows="5" class="materialize-textarea validate"></textarea>
+                                    </div>
+                                </li>
+                                <li class="row"> 
+                                    <div class="input-field col s12"> 
+                                            <h3 class="center-align">Select an image to upload</h3>
+                                    </div>
+                                </li>
+                                <li class="row">
+                                    <div class="input-field col s6">
+                                        <div class="image-preview center-align" id="imagePreview">
+                                            <img src="" alt="Image Preview" class="image-preview__image ">
+                                            <span class="imagepreview__default-text">Image Preview</span>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <form method="post" action="/" enctype="multipart/form-data">
+                                            <div class="file-input-container">
+                                                <input type="file" name="file" id="file" autocomplete="off" required>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
                             </ul>
-                    </div> -->
 
-
-                    <div class="form-wrapper">
-                        <form post="#">
-                                <div class="row">
-                                    <div class="form__item">
-                                        <label class="recipe__name" for="recipe-name">Recipe Name<i class="red">( max length 200 )</i></label>
-                                        <br>
-                                        <input name="recipe-name"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form__item">
-                                        <label class="recipe__time" for="prep_time">Prep Time</label>
-                                        <br>
-                                        <input class="time__input" type="text"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form__item">
-                                    <label class="recipe__time">Cooking Time</label>
-                                    <br>
-                                    <input class="time__input" type="text"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form__item">
-                                    <label class="recipe__time" for="servings">Servings</label>
-                                    <br>
-                                    <input class="time__input" for="servings" type="text"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                <div class="form__item">
-                                    <label for="short-desc">Short Description</label>
-                                    <br>
-                                    <textarea name="short-desc" cols="30" rows="5"></textarea>
-                                </div>
-                                </div>
-                                <div class="row">
-                                <div class="form__item">
-                                    <label for="ing-list">Ingredients</label>
-                                    <br>
-                                    <textarea name="ing-list" cols="30" rows="10"></textarea>
-                                </div>
-                                </div>
-                                <div class="row">
-                                <div class="form__item">
-                                    <label for="direction">Directions</label>
-                                    <br>
-                                    <textarea name="direction" rows="10"></textarea>
-                                </div>
-                                </div>
-                                <div class="row">
-                                <div class="form__item">
-                                    <label for="cook-tips">Cooking Tips</label>
-                                    <br>
-                                    <textarea name="cook-tips" rows="5"></textarea>
-                                </div>
-                                </div>
                         </form>
                     </div>
         </div>
-    </div>
     <div class="row">
         <!--  Upload Image  -->
         <div class="row"> 
             <div class="col s12"> 
                     <h3 class="center-align">Select an image to upload</h3>
-                    <p>
-                        {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                            <ul>
-                            {% for message in messages %}
-                            <li>{{ message }}</li>
-                            {% endfor %}
-                            </ul>
-                        {% endif %}
-                        {% endwith %}
-                    </p>
                         
             </div>
         </div>
