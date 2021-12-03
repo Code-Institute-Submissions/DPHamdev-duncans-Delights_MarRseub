@@ -181,7 +181,11 @@ def delete_recipe(task_id):
     return redirect(url_for("profile"))
 
 
-
+# # categories
+# app.route("/manage_categories")
+# def manage_categories():
+#     # categories = list(mongo.db.recipeCategory.find().sort("course_category", 1))
+#     return render_template("category.html")
 
 
 # starter page
