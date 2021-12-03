@@ -104,8 +104,7 @@ def profile(username):
         {"username": session["user"]})["username"]   
     if session["user"]:
         recipe = list(mongo.db.recipes.find())
-        return render_template(
-            "profile.html", username=username, recipes=recipe)
+        return render_template("profile.html", username=username, recipes=recipe)
 
     return redirect(url_for("login"))
 
@@ -148,6 +147,13 @@ def add_recipe():
 
     categories = mongo.db.recipeCategory.find().sort("course_category", 1)
     return render_template("addrecipe.html", categories=categories)
+
+
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    categories = mongo.db.recipeCategory.find().sort("course_category", 1)
+    return render_template("editrecipe.html", recipe=recipe, categories=categories)
 
 
 @app.route("/starters")

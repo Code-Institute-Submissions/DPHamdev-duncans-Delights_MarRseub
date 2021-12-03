@@ -1,8 +1,146 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="row">
+    <h1 class="center-align">Edit Recipe</h1>
 
-    </div>
+    <div class="row recipeForm">
+        <!-- Add recipe form -->
+                    <div class="form-wrapper row card-panel grey lighten-5">
+                        <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
+                            <ul>
+                                <!-- category selection -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+                                        <select id="course_category" name="course_category" class="validate" required>
+                                            <option value="" disabled selected>Choose Category</option>
+                                            {% for category in categories %}
+                                                <option value="{{ category.course_category }}">{{ category.course_category }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <label for="course_category">Recipe Category</label>
+                                    </div>
+                                </div>
+
+                                <!-- recipe name  -->
+                                <li class="row">
+                                    <div class="input-field col s6">
+                                        <i class="fas fa-file-signature prefix"></i>
+                                        <label for="recipe_name">Recipe Name</label>
+                                        <input id="recipe_name" name="recipe_name" type="text" class="validate"/>
+                                    </div>
+
+                                    <!-- prep time -->
+                                    <div class="input-field col s3">
+                                        <i class="fas fa-stopwatch prefix"></i>
+                                        <label for="prep_time">Prep Time</label>
+                                        <input placeholder="e.g. 40" id="prep_time" name="prep_time" type="number" class="validate"/>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <p class="valign-wrapper">Minutes</p>
+                                    </div>
+                                </li>
+                                <li class="row">
+
+                                    <!-- cooking time -->
+                                    <div class="input-field col s3">
+                                        <i class="fas fa-stopwatch prefix"></i>
+                                        <label for="cooking_time">Cooking Time</label>
+                                        <input placeholder="e.g. 120" id="cooking_time" name="cooking_time" type="number" class="validate"/>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <p class="valign-wrapper">Minutes</p>
+                                    </div>
+
+                                    <!-- servings -->
+                                    <div class="input-field col s3">
+                                        <i class="fas fa-users prefix"></i>
+                                        <label for="serves">Serves</label>
+                                        <input placeholder="e.g. 3" name="serves" id="serves" type="number" class="validate"/>
+                                    </div>
+                                    <div class="input-field col s3">
+                                        <p class="valign-wrapper">People</p>
+                                    </div>
+                                </li>
+
+                                <!-- short description  -->
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-pencil-alt prefix"></i>
+                                        <label for="s_desc">Short Description</label>
+                                        <textarea name="s_desc" id="s_desc" cols="30" rows="5" class="materialize-textarea validate"></textarea>
+                                    </div>
+                                </li>
+
+                                <!-- ingredients -->
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-list prefix"></i>
+                                        <label for="ingredients">Ingredients</label>
+                                        <textarea name="ingredients" id="ingredients" cols="30" rows="10" class="materialize-textarea validate"></textarea>
+                                    </div>
+                                </li>
+
+                                <!-- directions for use  -->
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-directions prefix"></i>
+                                        <label for="directions">Directions</label>
+                                        <textarea name="directions" id="directions" rows="10" class="materialize-textarea validate"></textarea>
+                                    </div>
+                                </li>
+
+                                <!-- cooking tips -->
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-hands-helping prefix"></i>
+                                        <label for="cook_tip">Cooking Tips</label>
+                                        <textarea name="cook_tip" id="cook_tip" rows="5" class="materialize-textarea validate"></textarea>
+                                    </div>
+                                </li>
+
+                                <!-- image header -->
+                                <li class="row"> 
+                                    <div class="input-field col s12"> 
+                                            <h3 class="center-align">Select an image to upload</h3>
+                                    </div>
+                                </li>
+
+                                <!-- image preview -->
+                                <!-- <li>
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div class="image-preview center-align" id="imagePreview">
+                                                <img src="" alt="Image Preview" class="image-preview__image ">
+                                                <span class="imagepreview__default-text">Image Preview</span>
+                                            </div>
+                                        </div> 
+
+                                         image file selection -->
+                                        <!-- <div class="col s6">
+                                            <form method="post" action="/" enctype="multipart/form-data">
+                                                <dl>
+                                                    <p>
+                                                        <input type="file" name="file" id="file" autocomplete="off" required>
+                                                    </p>
+                                                </dl>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li> --> 
+                            </ul>
+
+                            <!-- submit button -->
+                            <div class="row">
+                                <div class="col s12 center-align">
+                                    <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+                                        Edit Recipe <i class="fas fa-edit right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+        </div>
 
 {% endblock %}
+
