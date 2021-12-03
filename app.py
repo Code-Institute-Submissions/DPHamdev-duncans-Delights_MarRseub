@@ -35,11 +35,9 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        # check to see if username exists on 
-        
+        # check to see if username exists on
         user_exist = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        
         if user_exist:
             flash(
                 "That name already exists, think of another cool name!")
@@ -69,7 +67,7 @@ def login():
     if request.method == "POST":
         # checking username exists
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})   
+            {"username": request.form.get("username").lower()})
         if existing_user:
             # make sure password matches
             if check_password_hash(
@@ -106,10 +104,11 @@ def logout():
 def profile(username):
     # using the user session's username from db
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]   
+        {"username": session["user"]})["username"]
     if session["user"]:
         recipe = list(mongo.db.recipes.find())
-        return render_template("profile.html", username=username, recipes=recipe)
+        return render_template(
+            "profile.html", username=username, recipes=recipe)
 
     return redirect(url_for("login"))
 
@@ -167,25 +166,28 @@ def edit_recipe(recipe_id):
             flash("Recipe Successfully Edited")
 
         username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]   
+            {"username": session["user"]})["username"]
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         categories = mongo.db.recipeCategory.find().sort("course_category", 1)
-        return render_template("editrecipe.html", recipe=recipe, username=username, categories=categories)
+        return render_template(
+            "editrecipe.html", recipe=recipe,
+            username=username, categories=categories)
 
 
 # delete recipe
 @app.route("/delete_recipe/<recipe_id>")
-def delete_recipe(task_id):
+def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("Recipe Successfully Deleted")
     return redirect(url_for("profile"))
 
 
-# # categories
-# app.route("/manage_categories")
-# def manage_categories():
-#     # categories = list(mongo.db.recipeCategory.find().sort("course_category", 1))
-#     return render_template("category.html")
+# categories
+@app.route("/manage_categories")
+def manage_categories():
+    categories = list(mongo.db.recipeCategory.find().sort(
+        "course_category", 1))
+    return render_template("recipecategory.html", categories=categories)
 
 
 # starter page
