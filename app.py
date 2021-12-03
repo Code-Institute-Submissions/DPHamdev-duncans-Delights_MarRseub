@@ -101,9 +101,11 @@ def logout():
 def profile(username):
     # using the user session's username from db
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]     
+        {"username": session["user"]})["username"]   
     if session["user"]:
-        return render_template("profile.html", username=username)
+        recipe = list(mongo.db.recipes.find())
+        return render_template(
+            "profile.html", username=username, recipes=recipe)
 
     return redirect(url_for("login"))
 
