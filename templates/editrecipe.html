@@ -9,7 +9,7 @@
                         <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
                             <ul>
                                 <!-- category selection -->
-                                <div class="row">
+                                <li class="row">
                                     <div class="input-field col s12">
                                         <i class="fas fa-folder-open prefix "></i>
                                         <select id="course_category" name="course_category" class="validate" required>
@@ -20,7 +20,7 @@
                                         </select>
                                         <label for="course_category">Recipe Category</label>
                                     </div>
-                                </div>
+                                </li>
 
                                 <!-- recipe name  -->
                                 <li class="row">
