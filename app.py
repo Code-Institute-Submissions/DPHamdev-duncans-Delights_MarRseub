@@ -159,11 +159,11 @@ def edit_recipe(recipe_id):
 
         flash("Recipe Successfully Edited")
 
-        username = mongo.db.users.find_one(
+    username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
-        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-        categories = mongo.db.recipeCategory.find().sort("course_category", 1)
-        return render_template(
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    categories = mongo.db.recipeCategory.find().sort("course_category", 1)
+    return render_template(
             "editrecipe.html", recipe=recipe,
             username=username, categories=categories)
 

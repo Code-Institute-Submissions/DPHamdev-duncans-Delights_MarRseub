@@ -27,14 +27,14 @@
                                     <div class="input-field col s6">
                                         <i class="fas fa-file-signature prefix"></i>
                                         <label for="recipe_name">Recipe Name</label>
-                                        <input id="recipe_name" name="recipe_name" minlength="5" maxlength="25" type="text" class="validate"/>
+                                        <input id="recipe_name" name="recipe_name" required minlength="5" maxlength="25" type="text" class="validate"/>
                                     </div>
 
                                     <!-- prep time -->
                                     <div class="input-field col s3">
                                         <i class="fas fa-stopwatch prefix"></i>
                                         <label for="prep_time">Prep Time</label>
-                                        <input placeholder="e.g. 40" id="prep_time" name="prep_time" max="240" type="number" class="validate"
+                                        <input placeholder="e.g. 40" id="prep_time" required name="prep_time" max="240" type="number" class="validate"
                                         oninvalid="alert('Max Length is 240');"/>
                                     </div>
                                     <div class="input-field col s3">
@@ -47,7 +47,7 @@
                                     <div class="input-field col s3">
                                         <i class="fas fa-stopwatch prefix"></i>
                                         <label for="cooking_time">Cooking Time</label>
-                                        <input placeholder="e.g. 120" id="cooking_time" max="240" name="cooking_time" type="number" class="validate"
+                                        <input placeholder="e.g. 120" id="cooking_time" required max="240" name="cooking_time" type="number" class="validate"
                                         oninvalid="alert('Max Length is 240');"/>
                                     </div>
                                     <div class="input-field col s3">
@@ -58,7 +58,7 @@
                                     <div class="input-field col s3">
                                         <i class="fas fa-users prefix"></i>
                                         <label for="serves">Serves</label>
-                                        <input placeholder="e.g. 3" name="serves" max="20" id="serves" type="number" class="validate"
+                                        <input placeholder="e.g. 3" name="serves" max="20" required id="serves" type="number" class="validate"
                                         oninvalid="alert('Max Length is 20');"/>
                                     </div>
                                     <div class="input-field col s3">
@@ -71,7 +71,7 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-pencil-alt prefix"></i>
                                         <label for="s_desc">Short Description</label>
-                                        <textarea name="s_desc" id="s_desc" cols="30" rows="5" class="materialize-textarea validate"></textarea>
+                                        <textarea name="s_desc" id="s_desc" cols="30" rows="5" required class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
@@ -83,7 +83,7 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-list prefix"></i>
                                         <label for="ingredients">Ingredients</label>
-                                        <textarea name="ingredients" id="ingredients" cols="30" rows="50" class="materialize-textarea validate"></textarea>
+                                        <textarea name="ingredients" id="ingredients" cols="30" required rows="50" class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
@@ -95,7 +95,7 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-directions prefix"></i>
                                         <label for="directions">Directions</label>
-                                        <textarea name="directions" id="directions" cols="30" rows="50" class="materialize-textarea validate"></textarea>
+                                        <textarea name="directions" id="directions" cols="30" required rows="50" class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
@@ -104,7 +104,7 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-hands-helping prefix"></i>
                                         <label for="cook_tip">Cooking Tips</label>
-                                        <textarea name="cook_tip" id="cook_tip" cols="30" rows="50" class="materialize-textarea validate"></textarea>
+                                        <textarea name="cook_tip" id="cook_tip" cols="30" rows="50" required class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
@@ -118,7 +118,7 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-camera prefix"></i>
                                         <label for="image_upload">Image Upload</label>
-                                        <input placeholder="Enter your image URL here" name="image_upload" id="image_upload" type="url" class="validate"/>
+                                        <input placeholder="Enter your image URL here" name="image_upload" required id="image_upload" type="url" class="validate"/>
                                     </div>
                                 </li>
                                 
