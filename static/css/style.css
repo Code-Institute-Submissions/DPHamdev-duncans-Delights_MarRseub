@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dosis:wght@200;300;400;500&display=swap');
+
+h1, h2, h3 {
+  font-family: 'Bebas Neue', 'Courier New', Courier, monospace;
+}
+
+p, a, li {
+  font-family: 'Dosis', 'Courier New', Courier, monospace;
+  font-weight: 300;
+  font-size: medium;
+}
+
+a {
+  font-family: 'Dosis', 'Courier New', Courier, monospace;
+  font-weight: 500;
+}
+
 
 /* flash message styling */
 
