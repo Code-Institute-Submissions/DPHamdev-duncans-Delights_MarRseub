@@ -23,8 +23,7 @@
 
       {% if recipes|length > 0 %}  
       <ul class="collapsible">
-        {% for recipe in recipes %}
-           {% if recipe.course_category == "Starter" %}   
+        {% for recipe in recipes %}   
               <li>
                 <div class="collapsible-header">
                     <i class="material-icons"></i>
@@ -68,7 +67,6 @@
                   </div>
                 </div>
               </li>
-            {% endif %}
         {% endfor %}
       </ul>
       {% else %}
