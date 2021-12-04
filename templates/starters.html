@@ -28,13 +28,18 @@
                       <p><strong>Cooking Time</strong> : {{ recipe.cooking_time }} minutes</p>
                       <p><strong>Serves</strong> : {{ recipe.serves }} people</p>
                       <p><strong>Short Description</strong> : {{ recipe.s_desc }}</p>
-                      <p><strong>Ingredients</strong>:</p>
-                      <br>
-                      {% for ingredient in recipe.recipe_ingredients %}
-                        <p>{{ ingredient }}</p>
-                      {% endfor %}
-                      <br>
-                      <p><strong>Directions</strong> : {{ recipe.directions }}</p>
+                      <p><strong>Ingredients</strong>:</p>  
+                      <ol>
+                        {% for ingredient in recipe.ingredients %}
+                          <li>{{ ingredient }}</li>
+                        {% endfor %}
+                      </ol>
+                      <p><strong>Directions</strong>:</p>
+                      <ol>
+                        {% for direction in recipe.directions %}
+                          <li>{{ direction }}</li>
+                        {% endfor %}
+                      </ol>
                       <p><strong>Cooking Tips</strong> : {{ recipe.cook_tip }}</p>
                       <p><strong>Created by</strong> : {{ recipe.created_by }}</p>
                     </div>

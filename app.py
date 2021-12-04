@@ -180,6 +180,12 @@ def edit_recipe(recipe_id):
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    if session["user"]:
+        mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        return render_template("profile.html", username=username)
+
     flash("Recipe Successfully Deleted")
     return redirect(url_for("profile"))
 
