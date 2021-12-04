@@ -29,7 +29,7 @@
               <a href="{{ url_for('home') }}" class="brand-logo">Duncan's Delights</a>
               <a href="#" data-target="mobile-demo" class="sidenav-trigger left"><i class="fas fa-bars"></i></a>
               <ul class="right left hide-on-med-and-down">
-                <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('recipes') }}">Recipe Collection</a></li>
                 {% if session.user %}
                     <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
                     {% if session.user|lower == "admin"|lower %}
@@ -48,7 +48,7 @@
       <!-- mobile sidenav -->
           <ul id="mobile-demo" class="sidenav">
             <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
+            <li><a href="{{ url_for('recipes') }}">Recipe Collection</a></li>
             {% if session.user %}
                 <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>
                 {% if session.user|lower == "admin"|lower %}

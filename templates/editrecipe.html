@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1 class="center-align">Edit Recipe</h1>
+    <h3 class="center-align">Edit Recipe</h3>
 
     <div class="row recipeForm">
         <!-- Add recipe form -->
@@ -11,15 +11,11 @@
                                 <!-- category selection -->
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+                                        <i class="fas fa-folder-open prefix "></i>
                                         <select id="course_category" name="course_category" class="validate" required>
                                             <option value="" disabled selected>Choose Category</option>
                                             {% for category in categories %}
-                                                {% if category.course_category == recipe.course_category %}
-                                                    <option value="{{ category.course_category }}" selected>{{ category.course_category }}</option>
-                                                {% else %}
-                                                    <option value="{{ category.course_category }}" >{{ category.course_category }}</option>
-                                                {% endif %}
+                                                <option value="{{ category.course_category }}">{{ category.course_category }}</option>
                                             {% endfor %}
                                         </select>
                                         <label for="course_category">Recipe Category</label>
@@ -31,14 +27,15 @@
                                     <div class="input-field col s6">
                                         <i class="fas fa-file-signature prefix"></i>
                                         <label for="recipe_name">Recipe Name</label>
-                                        <input value="{{ recipe.recipe_name }}" id="recipe_name" name="recipe_name" type="text" class="validate"/>
+                                        <input id="recipe_name" name="recipe_name" minlength="5" maxlength="25" type="text" class="validate"/>
                                     </div>
 
                                     <!-- prep time -->
                                     <div class="input-field col s3">
                                         <i class="fas fa-stopwatch prefix"></i>
                                         <label for="prep_time">Prep Time</label>
-                                        <input value="{{ recipe.prep_time }}" placeholder="e.g. 40" id="prep_time" name="prep_time" type="number" class="validate"/>
+                                        <input placeholder="e.g. 40" id="prep_time" name="prep_time" max="240" type="number" class="validate"
+                                        oninvalid="alert('Max Length is 240');"/>
                                     </div>
                                     <div class="input-field col s3">
                                         <p class="valign-wrapper">Minutes</p>
@@ -50,7 +47,8 @@
                                     <div class="input-field col s3">
                                         <i class="fas fa-stopwatch prefix"></i>
                                         <label for="cooking_time">Cooking Time</label>
-                                        <input value="{{ recipe.cooking_time }}" placeholder="e.g. 120" id="cooking_time" name="cooking_time" type="number" class="validate"/>
+                                        <input placeholder="e.g. 120" id="cooking_time" max="240" name="cooking_time" type="number" class="validate"
+                                        oninvalid="alert('Max Length is 240');"/>
                                     </div>
                                     <div class="input-field col s3">
                                         <p class="valign-wrapper">Minutes</p>
@@ -60,7 +58,8 @@
                                     <div class="input-field col s3">
                                         <i class="fas fa-users prefix"></i>
                                         <label for="serves">Serves</label>
-                                        <input value="{{ recipe.serves }}" placeholder="e.g. 3" name="serves" id="serves" type="number" class="validate"/>
+                                        <input placeholder="e.g. 3" name="serves" max="20" id="serves" type="number" class="validate"
+                                        oninvalid="alert('Max Length is 20');"/>
                                     </div>
                                     <div class="input-field col s3">
                                         <p class="valign-wrapper">People</p>
@@ -72,32 +71,31 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-pencil-alt prefix"></i>
                                         <label for="s_desc">Short Description</label>
-                                        <textarea name="s_desc" id="s_desc" cols="30" rows="5" class="materialize-textarea validate">
-                                            {{- recipe.s_desc -}}
-                                        </textarea>
+                                        <textarea name="s_desc" id="s_desc" cols="30" rows="5" class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
                                 <!-- ingredients -->
                                 <li class="row">
+                                    <div class="row col s12">
+                                        <p class="center-align">When inputting ingredients, please use a new line for each ingredient</p>
+                                    </div>
                                     <div class="input-field col s12">
-                                        <p>When adding ingredients, please separate each ingredient with a new line.</p>
                                         <i class="fas fa-list prefix"></i>
                                         <label for="ingredients">Ingredients</label>
-                                        <textarea name="ingredients" id="ingredients" cols="30" rows="10" class="materialize-textarea validate">
-                                            {{- recipe.ingredients -}}
-                                        </textarea>
+                                        <textarea name="ingredients" id="ingredients" cols="30" rows="50" class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
                                 <!-- directions for use  -->
                                 <li class="row">
+                                    <div class="row col s12">
+                                        <p class="center-align">When inputting directions of use, please use a new line for each direction</p>
+                                    </div>
                                     <div class="input-field col s12">
                                         <i class="fas fa-directions prefix"></i>
                                         <label for="directions">Directions</label>
-                                        <textarea name="directions" id="directions" rows="10" class="materialize-textarea validate">
-                                            {{- recipe.directions -}}
-                                        </textarea>
+                                        <textarea name="directions" id="directions" cols="30" rows="50" class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
@@ -106,9 +104,7 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-hands-helping prefix"></i>
                                         <label for="cook_tip">Cooking Tips</label>
-                                        <textarea name="cook_tip" id="cook_tip" rows="5" class="materialize-textarea validate">
-                                            {{- recipe.cook_tip -}}
-                                        </textarea>
+                                        <textarea name="cook_tip" id="cook_tip" cols="30" rows="50" class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
@@ -118,31 +114,15 @@
                                             <h3 class="center-align">Select an image to upload</h3>
                                     </div>
                                 </li>
-
-                                <!-- image preview -->
-                                <!-- <li>
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div class="image-preview center-align" id="imagePreview">
-                                                <img src="" alt="Image Preview" class="image-preview__image ">
-                                                <span class="imagepreview__default-text">Image Preview</span>
-                                            </div>
-                                        </div> 
-
-                                         image file selection -->
-                                        <!-- <div class="col s6">
-                                            <form method="post" action="/" enctype="multipart/form-data">
-                                                <dl>
-                                                    <p>
-                                                        <input type="file" name="file" id="file" autocomplete="off" required>
-                                                    </p>
-                                                </dl>
-                                            </form>
-                                        </div>
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-camera prefix"></i>
+                                        <label for="image_upload">Image Upload</label>
+                                        <input placeholder="Enter your image URL here" name="image_upload" id="image_upload" type="url" class="validate"/>
                                     </div>
-                                </li> --> 
+                                </li>
+                                
                             </ul>
-
                             <!-- submit button -->
                             <div class="row">
                                 <div class="col s12 center-align">

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1 class="center-align">Add Recipe</h1>
+    <h3 class="center-align">Add Recipe</h3>
 
     <div class="row recipeForm">
         <!-- Add recipe form -->
@@ -11,7 +11,7 @@
                                 <!-- category selection -->
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <i class="fas fa-folder-open prefix light-blue-text text-darken-4"></i>
+                                        <i class="fas fa-folder-open prefix"></i>
                                         <select id="course_category" name="course_category" class="validate" required>
                                             <option value="" disabled selected>Choose Category</option>
                                             {% for category in categories %}
@@ -27,14 +27,15 @@
                                     <div class="input-field col s6">
                                         <i class="fas fa-file-signature prefix"></i>
                                         <label for="recipe_name">Recipe Name</label>
-                                        <input id="recipe_name" name="recipe_name" type="text" class="validate"/>
+                                        <input id="recipe_name" name="recipe_name" minlength="5" maxlength="25" type="text" class="validate"/>
                                     </div>
 
                                     <!-- prep time -->
                                     <div class="input-field col s3">
                                         <i class="fas fa-stopwatch prefix"></i>
                                         <label for="prep_time">Prep Time</label>
-                                        <input placeholder="e.g. 40" id="prep_time" name="prep_time" type="number" class="validate"/>
+                                        <input placeholder="e.g. 40" id="prep_time" name="prep_time" max="240" type="number" class="validate"
+                                        oninvalid="alert('Max Length is 240');"/>
                                     </div>
                                     <div class="input-field col s3">
                                         <p class="valign-wrapper">Minutes</p>
@@ -46,7 +47,8 @@
                                     <div class="input-field col s3">
                                         <i class="fas fa-stopwatch prefix"></i>
                                         <label for="cooking_time">Cooking Time</label>
-                                        <input placeholder="e.g. 120" id="cooking_time" name="cooking_time" type="number" class="validate"/>
+                                        <input placeholder="e.g. 120" id="cooking_time" max="240" name="cooking_time" type="number" class="validate"
+                                        oninvalid="alert('Max Length is 240');"/>
                                     </div>
                                     <div class="input-field col s3">
                                         <p class="valign-wrapper">Minutes</p>
@@ -56,7 +58,8 @@
                                     <div class="input-field col s3">
                                         <i class="fas fa-users prefix"></i>
                                         <label for="serves">Serves</label>
-                                        <input placeholder="e.g. 3" name="serves" id="serves" type="number" class="validate"/>
+                                        <input placeholder="e.g. 3" name="serves" max="20" id="serves" type="number" class="validate"
+                                        oninvalid="alert('Max Length is 20');"/>
                                     </div>
                                     <div class="input-field col s3">
                                         <p class="valign-wrapper">People</p>
@@ -80,7 +83,7 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-list prefix"></i>
                                         <label for="ingredients">Ingredients</label>
-                                        <textarea name="ingredients" id="ingredients" cols="30" rows="10" class="materialize-textarea validate"></textarea>
+                                        <textarea name="ingredients" id="ingredients" cols="30" rows="50" class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
@@ -92,7 +95,7 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-directions prefix"></i>
                                         <label for="directions">Directions</label>
-                                        <textarea name="directions" id="directions" rows="10" class="materialize-textarea validate"></textarea>
+                                        <textarea name="directions" id="directions" cols="30" rows="50" class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
@@ -101,7 +104,7 @@
                                     <div class="input-field col s12">
                                         <i class="fas fa-hands-helping prefix"></i>
                                         <label for="cook_tip">Cooking Tips</label>
-                                        <textarea name="cook_tip" id="cook_tip" rows="5" class="materialize-textarea validate"></textarea>
+                                        <textarea name="cook_tip" id="cook_tip" cols="30" rows="50" class="materialize-textarea validate"></textarea>
                                     </div>
                                 </li>
 
@@ -124,7 +127,7 @@
                             <!-- submit button -->
                             <div class="row">
                                 <div class="col s12 center-align">
-                                    <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+                                    <button type="submit" class="btn-large text-shadow">
                                         Add Recipe <i class="fas fa-plus-square right"></i>
                                     </button>
                                 </div>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-      <h1 class="center-align">Starters</h1>
+      <h3 class="center-align">Starters</h3>
             
       <ul class="collapsible">
         {% for recipe in recipes %}
@@ -43,8 +43,8 @@
                       <p><strong>Cooking Tips</strong> : {{ recipe.cook_tip }}</p>
                       <p><strong>Created by</strong> : {{ recipe.created_by }}</p>
                     </div>
-                    <div class="col s4">
-                      <img src="{{ recipe.image_upload }}" alt="">
+                    <div class="col s4 recImg">
+                      <img src="{{ recipe.image_upload }}" alt="Recipe Uploaded Image">
                     </div>
                   </div>
                 </div>

@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dosis:wght@200;300;400;500&display=swap');
 
+
+/* font styling */
+
 h1, h2, h3 {
-  font-family: 'Bebas Neue', 'Courier New', Courier, monospace;
+  font-family: 'Dosis', 'Courier New', Courier, monospace;
+  color: #21161a;
+  margin: 30px;
 }
 
 p, a, li {
   font-family: 'Dosis', 'Courier New', Courier, monospace;
   font-weight: 300;
-  font-size: medium;
+  font-size: large;
 }
 
 a {
@@ -15,41 +20,76 @@ a {
   font-weight: 500;
 }
 
+strong {
+  font-size: x-large;
+  font-weight: 500;
+}
+
+.profile-heading {
+  text-transform: capitalize;
+}
+
+/* base styling */
+
+body {
+  background: #e2ceb6;
+}
+
+nav {
+  background: #21161a !important;
+  color: #ffffff;
+}
+
+.brand-logo {
+  font-family: 'Bebas Neue', 'Courier New', Courier, monospace;
+  margin-left: 10px;
+  font-size: xxx-large !important;
+}
+
+/* button styling */
+.btn-small, .btn-large {
+  background: #d8e5ed;
+  color: #21161a;
+  font-size: large;
+}
+
+.btn-small:hover, .btn-large:hover {
+  background-color: #8ca6b3 !important;
+}
+
+/* collapsible styling */
+.collapsible, .collapsible-header  {
+  background: #563530 !important;
+  color: #e2ceb6;
+  border-radius: 5px;
+  border: 2px solid #f2f4f3;
+}
+
+.collapsible-header strong {
+  text-transform: capitalize;
+}
 
 /* flash message styling */
-
 .flashes {
   line-height: 2px;
   display: block !important;
 }
 
-/* image preview */
-
-.image-preview {
-    width: 300px;
-    min-height: 100px;
-    border: 2px solid #dddddd;
-    margin-top: 15px;
-    margin-left: auto;
-    margin-right: auto;
-
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #cccccc;
-}
-
-.image-preview__image {
-  display: none;
-  width: 100%;
+/* image upload */
+.recImg img {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 1px 1px black;
+  margin: auto 0px;
+  border-radius: 10px;
 }
 
 /* form styling */
-
 .recipeForm {
   display: block !important;
+  font-family: 'Dosis', 'Courier New', Courier, monospace;
+  font-weight: 300;
+  font-size: medium;
 }
 
 .form-wrapper {
@@ -63,23 +103,14 @@ a {
     margin-bottom: 5px;
   }
 
-  .file-input-container {
-    display: flex;
-    width: 160px;
-    padding: 10px;
-    background-color: #CCC;
-  }
-
-/* recipe button images */
-
 .starter-btn {
   background: url(/static/images/starter.jpg) no-repeat center;
   background-size: cover;
   height: 300px;
   line-height: 300px;
-  border: 1px solid black;
   margin: 10px;
   border-radius: 10px;
+  box-shadow: 2px 2px black;
 }
 
 .mcourse-btn {
@@ -87,9 +118,9 @@ a {
   background-size: cover;
   height: 300px;
   line-height: 300px;
-  border: 1px solid black;
   margin: 10px;
   border-radius: 10px;
+  box-shadow: 2px 2px black;
 }
 
 .dessert-btn {
@@ -97,21 +128,25 @@ a {
   background-size: cover;
   height: 300px;
   line-height: 300px;
-  border: 1px solid black;
   margin: 10px;
   border-radius: 10px;
+  box-shadow: 2px 2px black;
+}
+
+.starter-btn:hover, .mcourse-btn:hover, .dessert-btn:hover {
+  opacity: 0.7;
 }
 
 /* button text */
 
 .rec-btn-text {
   background: rgba(255, 255, 255, 0.5);
-  font-size: 75px;
+  font-family: 'Dosis', 'Courier New', Courier, monospace;
+  font-size: 45px;
   color: black;
-  border: 2px white solid;
+  border: 2px #0a0908 solid;
   border-radius: 5px;
+
 }
 
-#modaldelete {
-  display: none;
-}
+
