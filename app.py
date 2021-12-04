@@ -184,10 +184,13 @@ def delete_recipe(recipe_id):
         mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
-        return render_template("profile.html", username=username)
-
+        flash("Recipe Successfully Deleted")
+        return redirect(url_for("profile", username=username))
+    
     flash("Recipe Successfully Deleted")
     return redirect(url_for("profile"))
+
+
 
 
 # categories
