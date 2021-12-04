@@ -74,6 +74,9 @@
 
                                 <!-- ingredients -->
                                 <li class="row">
+                                    <div class="row col s12">
+                                        <p class="center-align">When inputting ingredients, please use a new line for each ingredient</p>
+                                    </div>
                                     <div class="input-field col s12">
                                         <i class="fas fa-list prefix"></i>
                                         <label for="ingredients">Ingredients</label>
@@ -83,6 +86,9 @@
 
                                 <!-- directions for use  -->
                                 <li class="row">
+                                    <div class="row col s12">
+                                        <p class="center-align">When inputting directions of use, please use a new line for each direction</p>
+                                    </div>
                                     <div class="input-field col s12">
                                         <i class="fas fa-directions prefix"></i>
                                         <label for="directions">Directions</label>
@@ -105,29 +111,14 @@
                                             <h3 class="center-align">Select an image to upload</h3>
                                     </div>
                                 </li>
-
-                                <!-- image preview -->
-                                <!-- <li>
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div class="image-preview center-align" id="imagePreview">
-                                                <img src="" alt="Image Preview" class="image-preview__image ">
-                                                <span class="imagepreview__default-text">Image Preview</span>
-                                            </div>
-                                        </div> 
-
-                                         image file selection -->
-                                        <!-- <div class="col s6">
-                                            <form method="post" action="/" enctype="multipart/form-data">
-                                                <dl>
-                                                    <p>
-                                                        <input type="file" name="file" id="file" autocomplete="off" required>
-                                                    </p>
-                                                </dl>
-                                            </form>
-                                        </div>
+                                <li class="row">
+                                    <div class="input-field col s12">
+                                        <i class="fas fa-camera prefix"></i>
+                                        <label for="image_upload">Image Upload</label>
+                                        <input placeholder="Enter your image URL here" name="image_upload" id="image_upload" type="url" class="validate"/>
                                     </div>
-                                </li> --> 
+                                </li>
+                                
                             </ul>
 
                             <!-- submit button -->

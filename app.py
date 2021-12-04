@@ -132,8 +132,9 @@ def add_recipe():
             "serves": request.form.get("serves"),
             "s_desc": request.form.get("s_desc"),
             "ingredients": request.form.get("ingredients").splitlines(),
-            "directions": request.form.get("directions"),
+            "directions": request.form.get("directions").splitlines(),
             "cook_tip": request.form.get("cook_tip"),
+            "image_upload": request.form.get("image_upload"),
             "created_by": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
@@ -157,8 +158,9 @@ def edit_recipe(recipe_id):
                 "serves": request.form.get("serves"),
                 "s_desc": request.form.get("s_desc"),
                 "ingredients": request.form.get("ingredients").splitlines(),
-                "directions": request.form.get("directions"),
+                "directions": request.form.get("directions").splitlines(),
                 "cook_tip": request.form.get("cook_tip"),
+                "image_upload": request.form.get("image_upload"),
                 "created_by": session["user"]
             }
             mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
@@ -195,6 +197,7 @@ def manage_categories():
     return render_template("recipecategory.html", categories=categories)
 
 
+# add category
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
     username = mongo.db.users.find_one(
@@ -213,6 +216,7 @@ def add_category():
     return render_template("addcategory.html")
 
 
+# edit category
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
     if request.method == "POST":
@@ -227,6 +231,7 @@ def edit_category(category_id):
     return render_template("editcategory.html", category=category)
 
 
+# delete category
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
     mongo.db.recipeCategory.remove({"_id": ObjectId(category_id)})

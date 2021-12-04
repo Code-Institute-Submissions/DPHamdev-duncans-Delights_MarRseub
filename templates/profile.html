@@ -26,19 +26,26 @@
                     </div>
                 </div>
                 <div class="collapsible-body">
-                    <p><strong>Preparation Time</strong> : {{ recipe.prep_time }} minutes</p>
-                    <p><strong>Cooking Time</strong> : {{ recipe.cooking_time }} minutes</p>
-                    <p><strong>Serves</strong> : {{ recipe.serves }} people</p>
-                    <p><strong>Short Description</strong> : {{ recipe.s_desc }}</p>
-                    <ul>
-                      <li>
-                          <p><strong>Ingredients</strong> : {{ recipe.ingredients }}</p>
-                      </li>
-                    </ul>
-                    <p><strong>Directions</strong> : {{ recipe.directions }}</p>
-                    <p><strong>Cooking Tips</strong> : {{ recipe.cook_tip }}</p>
-                    <p><strong>Created by</strong> : {{ recipe.created_by }}</p>
-                </div>
+                    <div class="row">
+                      <div class="col s8">
+                        <p><strong>Preparation Time</strong> : {{ recipe.prep_time }} minutes</p>
+                        <p><strong>Cooking Time</strong> : {{ recipe.cooking_time }} minutes</p>
+                        <p><strong>Serves</strong> : {{ recipe.serves }} people</p>
+                        <p><strong>Short Description</strong> : {{ recipe.s_desc }}</p>
+                        <ol type="1">
+                          <li>
+                              <p><strong>Ingredients</strong> : {{ recipe.ingredients }}</p>
+                          </li>
+                        </ol>
+                        <p><strong>Directions</strong> : {{ recipe.directions }}</p>
+                        <p><strong>Cooking Tips</strong> : {{ recipe.cook_tip }}</p>
+                        <p><strong>Created by</strong> : {{ recipe.created_by }}</p>
+                      </div>
+                      <div class="col s4">
+                        <img src="{{ recipe.image_upload }}" alt="">
+                      </div>
+                    </div>
+                  </div>
               </li>
                {% endif %}
             {% endfor %}
