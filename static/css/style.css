@@ -165,4 +165,8 @@ nav {
 
 }
 
-
+@media (max-width: 600px) {
+  .brand-logo {
+    font-size: x-large !important;
+  }
+}
