@@ -227,6 +227,13 @@ def edit_category(category_id):
     return render_template("editcategory.html", category=category)
 
 
+@app.route("/delete_category/<category_id>")
+def delete_category(category_id):
+    mongo.db.recipeCategory.remove({"_id": ObjectId(category_id)})
+    flash("Category deleted successfully")
+    return redirect(url_for("manage_categories"))
+
+
 # starter page
 @app.route("/starters")
 def starters():

@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('.collapsible').collapsible();
     $('select').formSelect();
     $('.dropdown-trigger').dropdown();
-    $('.chips').chips();
+    $('.modal').modal();
     
     // validate course category form select element
 
