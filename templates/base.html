@@ -47,7 +47,6 @@
 
       <!-- mobile sidenav -->
           <ul id="mobile-demo" class="sidenav">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('recipes') }}">Recipe Collection</a></li>
             {% if session.user %}
                 <li><a href="{{ url_for('add_recipe') }}">Add Recipe</a></li>

@@ -17,18 +17,16 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-# Upload authentication
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 mongo = PyMongo(app)
 
 
 # root
 @app.route("/")
-@app.route("/home")
-def home():
-    return render_template("home.html")
+# recipe page
+@app.route("/recipes")
+def recipes():
+    return render_template("recipes.html")
 
 
 # register function
@@ -71,21 +69,21 @@ def login():
         if existing_user:
             # make sure password matches
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome to Duncan's Delights {}".format(
+            existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()   
+            flash("Welcome to Duncan's Delights {}".format(
                         request.form.get("username")))
-                    return redirect(url_for(
+            return redirect(url_for(
                         "profile", username=session["user"]))
-            else:
-                # incorrect password match
-                flash("Sorry, your Username and/or Password don't match.")
-                return redirect(url_for("login"))
-
         else:
-            # username doesn't exist function
-            flash("Sorry, your Username and/or Password don't match")
+            # incorrect password match
+            flash("Sorry, your Username and/or Password don't match.")
             return redirect(url_for("login"))
+
+    else:
+        # username doesn't exist function
+        flash("Sorry, your Username and/or Password don't match")
+        return redirect(url_for("login"))
 
     return render_template("login.html")
 
@@ -111,12 +109,6 @@ def profile(username):
             "profile.html", username=username, recipes=recipe)
 
     return redirect(url_for("login"))
-
-
-# recipe page
-@app.route("/recipes")
-def recipes():
-    return render_template("recipes.html")
 
 
 # add recipe
@@ -149,8 +141,8 @@ def add_recipe():
 # edit recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
-        if request.method == "POST":
-            submit = {
+    if request.method == "POST":
+        submit = {
                 "course_category": request.form.get("course_category"),
                 "recipe_name": request.form.get("recipe_name"),
                 "prep_time": request.form.get("prep_time"),
@@ -163,9 +155,9 @@ def edit_recipe(recipe_id):
                 "image_upload": request.form.get("image_upload"),
                 "created_by": session["user"]
             }
-            mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
 
-            flash("Recipe Successfully Edited")
+        flash("Recipe Successfully Edited")
 
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
@@ -186,11 +178,8 @@ def delete_recipe(recipe_id):
             {"username": session["user"]})["username"]
         flash("Recipe Successfully Deleted")
         return redirect(url_for("profile", username=username))
-    
     flash("Recipe Successfully Deleted")
     return redirect(url_for("profile"))
-
-
 
 
 # categories
@@ -215,7 +204,7 @@ def add_category():
         redirect(url_for('profile', username=username))
 
     if request.method == "POST":
-        category ={
+        category = {
             "course_category": request.form.get("course_category")
         }
         mongo.db.recipeCategory.insert_one(category)
@@ -229,7 +218,7 @@ def add_category():
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
     if request.method == "POST":
-        submit ={
+        submit = {
             "course_category": request.form.get("course_category")
         }
         mongo.db.recipeCategory.update({"_id": ObjectId(category_id)}, submit)
@@ -267,41 +256,6 @@ def mCourse():
 def dessert():
     recipe = list(mongo.db.recipes.find())
     return render_template("desserts.html", recipes=recipe)
-
-
-# Image Upload
-
-# ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-
-
-# def allowed_file(filename):
-#     return '.' in filename and filename.rsplit(
-#         '.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-# @app.route('/', methods=['POST'])
-# def upload_image():
-# 	if 'file' not in request.files:
-# 		flash('No file part')
-# 		return redirect(request.url)
-# 	file = request.files['file']
-# 	if file.filename == '':
-# 		flash('No image selected for uploading')
-# 		return redirect(request.url)
-# 	if file and allowed_file(file.filename):
-# 		filename = secure_filename(file.filename)
-# 		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-# 		#print('upload_image filename: ' + filename)
-# 		flash('Image successfully uploaded and displayed below')
-# 		return render_template('upload.html', filename=filename)
-# 	else:
-# 		flash('Allowed image types are -> png, jpg, jpeg, gif')
-# 		return redirect(request.url)
-
-
-# @app.route('/display/<filename>')
-# def display_image(filename):
-# 	#print('display_image filename: ' + filename)
-# 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
 
 if __name__ == "__main__":
